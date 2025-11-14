@@ -294,12 +294,8 @@ class ClaudeChatUltimate:
         # 創建界面
         self.setup_ui()
         
-        # 應用主題
+        # 應用主題（會自動應用背景圖片）
         self.apply_theme()
-        
-        # 應用保存的背景圖片(如果有) - 延遲更長時間確保窗口完全初始化
-        if self.background_image_path:
-            self.root.after(500, self._apply_background)  # 延遲500ms
         
     def setup_ui(self):
         """設置用戶界面"""
@@ -572,26 +568,31 @@ class ClaudeChatUltimate:
     def apply_theme(self):
         """應用主題"""
         theme = self.THEMES[self.current_theme]
-        
+
         # 配置root背景
         self.root.configure(bg=theme['bg'])
-        
+
         # 配置chat_display
         self.chat_display.config(
             bg=theme['chat_bg'],
             fg=theme['fg'],
             insertbackground=theme['fg']
         )
-        
+
         # 配置input_text
         self.input_text.config(
             bg=theme['input_bg'],
             fg=theme['fg'],
             insertbackground=theme['fg']
         )
-        
+
         # 重新配置標籤
         self.configure_text_tags()
+
+        # 應用背景圖片（如果已設置）
+        if hasattr(self, 'background_image_path') and self.background_image_path:
+            # 延遲應用以確保界面完全初始化
+            self.root.after(100, self._apply_background)
         
     def change_theme(self, event):
         """更改主題"""
