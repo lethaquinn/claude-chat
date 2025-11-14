@@ -1,0 +1,17 @@
+# Claude Chat Ultimate - 依賴列表
+
+# 必需依賴
+requests>=2.31.0
+
+# 可選依賴 - 圖片處理
+Pillow>=10.0.0
+
+# 可選依賴 - PDF處理
+PyPDF2>=3.0.0
+
+# 可選依賴 - Word文檔處理
+python-docx>=0.8.11
+
+# 注意:
+# - tkinter 是Python內建的,通常不需要額外安裝
+# - 如果使用Linux,可能需要: sudo apt-get install python3-tk
